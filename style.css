@@ -1,0 +1,18 @@
+/*
+Theme Name: Frost Child
+Theme URI: https://mygoodpeople.com/
+Template: frost
+Author: My Good People
+Author URI: https://mygoodpeople.com/
+Description: New Design for alexflanagan.com
+Version: 0.9.10.1678967549
+Updated: 2023-03-16 11:52:29
+
+*/
+body {
+    background-color: #fff;
+}
+
+.wp-block-navigation .wp-block-navigation-item li:hover, .wp-block-navigation .wp-block-navigation-item li.current-menu-item {
+    border-bottom: 1px solid #05324E;
+}
