@@ -87,6 +87,83 @@ function get_related_articles_by_category($atts) {
 }
 add_shortcode('related_articles', 'get_related_articles_by_category');
 
+function get_category_posts_with_pagination($atts) {
+    $atts = shortcode_atts(array(), $atts);
+
+    $output = ''; // Initialize the output variable
+
+    if (is_category()) {
+        $current_category = get_queried_object();
+        $category_id = $current_category->term_id;
+
+        $posts_per_page = 12;
+        $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+        $args = array(
+            'posts_per_page' => $posts_per_page,
+            'category__in' => $category_id,
+            'orderby' => 'date',
+            'order' => 'DESC',
+            'paged' => $paged
+        );
+
+        $query = new WP_Query($args);
+
+        if ($query->have_posts()) {
+            $output .= '<ul class="wp-block-latest-posts__list category-posts has-link-color has-text-color has-contrast-color wp-block-latest-posts">';
+
+            while ($query->have_posts()) {
+                $query->the_post();
+                $output .= '<li><a class="wp-block-latest-posts__post-title" href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+            }
+
+            $output .= '</ul>';
+
+            if ($query->max_num_pages > 1) {
+
+            // Add pagination links
+            $output .= '<div class="pagination-links">';
+            
+            
+                $output .= paginate_links(array(
+                    'base' => get_pagenum_link(1) . '%_%',
+                    'format' => 'page/%#%/',
+                    'current' => $paged,
+                    'total' => $query->max_num_pages,
+                    'prev_text' => 'Previous',
+                    'next_text' => 'Next',
+                    'prev_next' => true,
+                    'prev_link' => is_first_page() ? '<span class="hide-button">Previous</span>' : '%',
+                    'next_link' => is_last_page($query) ? '<span class="hide-button">Next</span>' : '%',
+                ));
+            
+            
+            $output .= '</div>';
+        }
+
+            wp_reset_postdata();
+
+            return $output;
+        }
+    }
+
+    return 'No posts found in the category.';
+}
+
+// Helper functions for checking if it's the first or last page
+function is_first_page() {
+    global $paged;
+    return ($paged == 1);
+}
+
+function is_last_page($query) {
+    global $paged;
+    return ($paged == $query->max_num_pages);
+}
+
+add_shortcode('category_posts_with_pagination', 'get_category_posts_with_pagination');
+
+
 function add_favicon() {
     echo '<link rel="icon" type="image/png" href="/wp-content/themes/frost-child/images/favicon.png" />';
 }
