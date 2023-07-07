@@ -21,6 +21,11 @@ html, body {
     overflow-x: hidden;
 }
 
+.gfield--type-html {
+    font-size: 14px;
+    text-align: center;
+}
+
 body {
     background-color: #ffffff;
     font-family: 'Proxima Nova';

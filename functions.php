@@ -169,6 +169,12 @@ function add_favicon() {
 }
 add_action('wp_head', 'add_favicon');
 
+
+function add_favicon_to_posts() {
+    echo '<link rel="icon" href="' . get_site_icon_url() . '" sizes="32x32" />';
+}
+add_action('wp_head', 'add_favicon_to_posts');
+
 //filter Media & Text block output to add image caption
 function media_block_caption( $block_content, $block ) {
     if ( $block['blockName'] === 'core/media-text' ) {
