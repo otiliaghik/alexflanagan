@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+
     // Modify the Pagination Block output
     $('.wp-block-query-pagination').each(function() {
         var $pagination = $(this);

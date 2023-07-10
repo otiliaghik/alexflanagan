@@ -164,17 +164,6 @@ function is_last_page($query) {
 add_shortcode('category_posts_with_pagination', 'get_category_posts_with_pagination');
 
 
-function add_favicon() {
-    echo '<link rel="icon" type="image/png" href="/wp-content/themes/frost-child/images/favicon.png" />';
-}
-add_action('wp_head', 'add_favicon');
-
-
-function add_favicon_to_posts() {
-    echo '<link rel="icon" href="' . get_site_icon_url() . '" sizes="32x32" />';
-}
-add_action('wp_head', 'add_favicon_to_posts');
-
 //filter Media & Text block output to add image caption
 function media_block_caption( $block_content, $block ) {
     if ( $block['blockName'] === 'core/media-text' ) {
