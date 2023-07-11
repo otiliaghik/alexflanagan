@@ -21,7 +21,8 @@ html, body {
     overflow-x: hidden;
 }
 
-.gfield.gfield--type-captcha.field_sublabel_above.gfield--no-description.field_description_above {
+.gfield.gfield--type-captcha.field_sublabel_above.gfield--no-description.field_description_above,
+.gfield.gfield--type-captcha.field_sublabel_below.gfield--no-description.field_description_below {
     display: none !important;
 }
 
@@ -181,6 +182,17 @@ figcaption.wp-element-caption {
     line-height: 28.8px;
 }
 
+.offers-grid .wp-block-columns {
+    min-height: 217px;
+}
+
+.offers-grid .box-flexed.left-imafe {
+    margin-left: -15px;
+}
+
+.trained-section h3 {
+    min-height: 57px;
+}
 
 
 body.single  ol {
@@ -1164,6 +1176,21 @@ body .pagination-links .next:hover::after {
 }
 
 @media screen and (max-width: 780px) {
+
+    .offers-grid figure {
+        margin-bottom: 15px;
+      }
+
+    .offers-grid .box-flexed.left-imafe {
+    margin-left: 0;
+    }
+
+    
+    .trained-section h3 {
+        min-height: 55px;
+        margin-top: 0;
+    }
+
 
 
     body .wp-block-query-pagination-next::after, body .wp-block-query-pagination-previous::before,
